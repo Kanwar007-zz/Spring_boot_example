@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class FirstRestController {
 
-    @GetMapping(name="/first-rest")
+    @GetMapping(path="/first-rest")
     public String getFirstValue(){
         return "Vijay singh kanwar";
     }
