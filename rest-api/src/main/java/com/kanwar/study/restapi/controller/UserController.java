@@ -45,8 +45,12 @@ public class UserController {
     return ResponseEntity.created(location).build();
     
      }
-     @DeleteMapping(path = "/student/{id}")
-     public List<Student> deleteStudent(@PathVariable int id){
-         return studentServices.deleteStudent(id);
+     @DeleteMapping(path = "/students/{id}")
+     public void deleteStudent(@PathVariable int id){
+         Student student=  studentServices.deleteStudent(id);
+         if(student == null){
+             throw new UserNotException("ID...."+id);
+         }
      }
+
 }

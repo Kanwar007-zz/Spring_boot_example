@@ -4,6 +4,7 @@ import java.util.List;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 
 import com.kanwar.study.restapi.pojo.Student;
 
@@ -37,23 +38,29 @@ public class StudentServices {
         return this.student;
     }
     public Student saveStudent(Student student){
-       
+       if(student== null){
+           return null;
+       }
         student.setStudentId(++count);
         studentList.add(student);
         return student;
     }
     
-    public List<Student> deleteStudent(int  studentID){
-    
-        Student studentRemove;
-        for (Student student : studentList) {
-            if(student.getStudentId() ==studentID){
-                studentRemove= student;
-                count--;
-            }
-        }
-        studentList.remove(studentRemove);
-        return studentList;
+    public Student deleteStudent(int  studentID){
+        Iterator<Student> iterable =  studentList.iterator();
+          while(iterable.hasNext()){
+            Student student =  iterable.next();
+              if( student.getStudentId() == studentID){
+                iterable.remove();
+                return student;
+              }
+
+          }
+          
+      
+       
+        
+        return null;
     }
     
 }
